@@ -11,7 +11,12 @@ const app = express()
 
 connectToMongoDB(process.env.MongodbUrl).then(() => console.log("connected to mongodb"))
 
+
 app.use(express.json())
+
+app.get("/test", (req, res) => {
+  return res.end("<h1>Hi from server</h1>")
+})
 app.use("/url", urlRouter)
 
 app.get("/:shortId",async (req, res) => {
